@@ -1,113 +1,147 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Dots from '../../public/assets/dots.png';
+import JLogo from '../../public/assets/janata_logo.png';
+import Vector_doctor from '../../public/assets/vector_doctor.png';
+import first_aid from '../../public/assets/first_aid.png';
+import consult_paper from '../../public/assets/consult_paper.png';
+import phone from '../../public/assets/phone.png';
+import pill_bottle from '../../public/assets/pill_bottle.png';
+import readings from '../../public/assets/readings.png';
+import serach from '../../public/assets/serach.png';
+import shape_vector from '../../public/assets/shape_vector.png';
+
+export default function Page() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen flex flex-col justify-between">
+      <header className="flex justify-between items-center py-4 px-8">
+        <Image src={JLogo} alt="Janata Diagnostics Logo" width={100} height={100} />
+        <nav>
+          <button 
+            className="block md:hidden text-gray-700 focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <ul className="hidden md:flex space-x-8">
+            <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Home</a></li>
+            <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Packages</a></li>
+            <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Apps</a></li>
+            <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Testimonials</a></li>
+            <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">About us</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Sidebar for Mobile */}
+      <div className={`fixed inset-0 z-40 bg-sky-200 transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 md:hidden`}>
+        <div className="flex justify-between items-center p-2 mr-12">
+          <Image src={JLogo} alt="Janata Diagnostics Logo" width={80} height={80} />
+          <button 
+            className="text-gray-700 focus:outline-none"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <ul className="flex flex-col space-y-4 p-4">
+          <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Home</a></li>
+          <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Packages</a></li>
+          <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Apps</a></li>
+          <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">Testimonials</a></li>
+          <li><a href="#" className="text-gray-500 hover:text-gray-700 transition-colors duration-200">About us</a></li>
+        </ul>
+      </div>
+
+      <main className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 lg:px-24 py-16">
+        <div className="max-w-lg relative">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Virtual healthcare for you</h1>
+          <p className="text-gray-700 mb-6">
+            Janata provides progressive, and affordable healthcare, accessible on mobile and online for everyone.
+          </p>
+          <a href="#" className="inline-block bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600">
+            Consult today
           </a>
         </div>
-      </div>
+        <div className="mt-8 md:mt-0 relative">
+          <Image src={Vector_doctor} alt="Doctor Vector" width={500} height={500} />
+        </div>
+      </main>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Our Services Section */}
+      <section className="relative px-8 md:px-16 lg:px-24 py-16 bg-white">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+          Our services
+          <div className="h-1 w-24 bg-blue-500 mx-auto mt-2"></div>
+        </h2>
+        <p className="text-center text-gray-600 mb-12">
+          We provide you with the best choices for you. Adjust it to your health needs and make sure your undergo treatment with our highly qualified doctors you can consult with us which type of service is suitable for your health.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={serach} alt="Search doctor" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Search doctor</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              Choose your doctor from thousands of specialists, general, and trusted hospitals.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={pill_bottle} alt="Online pharmacy" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Online pharmacy</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              Buy your medicines with our mobile application with a simple delivery system.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={consult_paper} alt="Consultation" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Consultation</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              Free consultation with our trusted doctors and get the best recommendations.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={readings} alt="Details info" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Details info</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              Free consultation with our trusted doctors and get the best recommendations.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={first_aid} alt="Emergency care" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Emergency care</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              You can get 24/7 urgent care for yourself or your children and your lovely family.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <Image src={phone} alt="Tracking" width={60} height={60} />
+            <h3 className="text-xl font-semibold mt-4 text-left">Tracking</h3>
+            <p className="text-gray-600 mt-2 text-left">
+              Track and save your medical history and health data.
+            </p>
+          </div>
+        </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        {/* Shape vector under the cards */}
+        <div className="absolute bottom-0  right-0">
+          <Image src={shape_vector} alt="Shape Vector" layout="responsive" width={1200} height={200} />
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Footer Section */}
+      <footer className="bg-gray-800 text-white py-6">
+        <div className="container mx-auto text-center">
+          <p className="text-sm">© 2024 Janata Diagnostic Center. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
 }
